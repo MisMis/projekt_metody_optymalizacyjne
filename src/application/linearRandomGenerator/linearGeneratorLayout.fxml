@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.linearRandomGenerator.LinearGeneratorController">
+   <children>
+      <TextField fx:id="firstTextBox" layoutX="33.0" layoutY="33.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <TextField fx:id="secondTextBox" layoutX="121.0" layoutY="75.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="75.0" />
+      <TextField fx:id="thirdTextBox" layoutX="121.0" layoutY="124.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="124.0" />
+      <Button layoutX="202.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleOKButtton" prefHeight="25.0" prefWidth="74.0" text="go" />
+      <Label layoutX="94.0" layoutY="34.0" prefHeight="17.0" prefWidth="0.0" text="a" />
+      <Label layoutX="93.0" layoutY="79.0" text="b" />
+      <Label layoutX="91.0" layoutY="128.0" prefHeight="17.0" prefWidth="11.0" text="m" />
+      <Slider fx:id="iterationSlider" layoutX="17.0" layoutY="228.0" max="100000.0" prefHeight="14.0" prefWidth="250.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="13.0" />
+      <Label layoutX="121.0" layoutY="166.0" text="ilość iteracji" />
+      <TextField fx:id="iterationTextBox" layoutX="115.0" layoutY="188.0" prefHeight="25.0" prefWidth="74.0" />
+      <Button layoutX="213.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleChangeIterationTextBox" text="ok" />
+   </children>
+</AnchorPane>
