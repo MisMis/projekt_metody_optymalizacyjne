@@ -1,10 +1,13 @@
 package application.linearRandomGenerator;
 
+import java.util.concurrent.TimeUnit;
+
 import application.ChartPaneController;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Slider;
 
@@ -54,15 +57,24 @@ public class LinearGeneratorController {
 					Long.parseLong(thirdTextBox.getText()),
 					123);
 			
-			
 			//create chart
 			ChartPaneController controller=new ChartPaneController(0,100,0,100,2);
-			/*FXCollections<XYChart.Series<Number, Number>> list =new observable
-			controller.addObservableList(list);
-			for(int i=0;i<iterationSlider.getValue();i++) {
-				controller.addNextValue((gen.nextFrom0To1()*10000)/100, (gen.nextFrom0To1()*10000)%100);
-			}*/
 			mainClass.addScatterChart(controller.getChart());
+			try {
+				TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for(int i=0;i<iterationSlider.getValue();i++) {
+				controller.addPoint((gen.nextFrom0To1()*10000)/100, (gen.nextFrom0To1()*10000)%100);
+				try {
+					TimeUnit.MICROSECONDS.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	

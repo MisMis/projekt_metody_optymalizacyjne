@@ -15,7 +15,7 @@
       <Label layoutX="94.0" layoutY="34.0" prefHeight="17.0" prefWidth="0.0" text="a" />
       <Label layoutX="93.0" layoutY="79.0" text="b" />
       <Label layoutX="91.0" layoutY="128.0" prefHeight="17.0" prefWidth="11.0" text="m" />
-      <Slider fx:id="iterationSlider" layoutX="17.0" layoutY="228.0" max="100000.0" prefHeight="14.0" prefWidth="250.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="13.0" />
+      <Slider fx:id="iterationSlider" layoutX="17.0" layoutY="228.0" max="10000.0" prefHeight="14.0" prefWidth="250.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="13.0" />
       <Label layoutX="121.0" layoutY="166.0" text="ilość iteracji" />
       <TextField fx:id="iterationTextBox" layoutX="115.0" layoutY="188.0" prefHeight="25.0" prefWidth="74.0" />
       <Button layoutX="213.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleChangeIterationTextBox" text="ok" />
