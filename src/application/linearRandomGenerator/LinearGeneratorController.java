@@ -1,13 +1,10 @@
 package application.linearRandomGenerator;
 
-import java.util.concurrent.TimeUnit;
-
 import application.ChartPaneController;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Slider;
 
@@ -25,7 +22,7 @@ public class LinearGeneratorController {
 	@FXML
 	private Slider iterationSlider;
 	
-
+	
 	//reference to main class
 	private Main mainClass;
 	
@@ -39,6 +36,7 @@ public class LinearGeneratorController {
 		iterationSlider.valueProperty().addListener(e -> {
 			handleSliderAction();
 		});
+		
 	}
 	
 	
@@ -51,30 +49,23 @@ public class LinearGeneratorController {
 	@FXML
 	private void handleOKButtton() {
 		if(isValidInput()) {
-			LinearPseudorandomNumberGenerator gen=new LinearPseudorandomNumberGenerator(
+			/*LinearPseudorandomNumberGenerator gen=new LinearPseudorandomNumberGenerator(
 					Long.parseLong(firstTextBox.getText()),
 					Long.parseLong(secondTextBox.getText()),
 					Long.parseLong(thirdTextBox.getText()),
 					123);
 			
 			//create chart
+			ChartPaneController controller=new ChartPaneController(0,1,0,1,(float)0.01);
+			mainClass.addScatterChart(controller.getChart());
+			for(int i=0;i<iterationSlider.getValue();i++) {
+				controller.addPoint(gen.nextFrom0To1(),gen.nextFrom0To1());
+			}
+			*/
 			ChartPaneController controller=new ChartPaneController(0,100,0,100,2);
 			mainClass.addScatterChart(controller.getChart());
-			try {
-				TimeUnit.SECONDS.sleep(2);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			for(int i=0;i<iterationSlider.getValue();i++) {
-				controller.addPoint((gen.nextFrom0To1()*10000)/100, (gen.nextFrom0To1()*10000)%100);
-				try {
-					TimeUnit.MICROSECONDS.sleep(1);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			controller.setIterations(Integer.parseInt(iterationTextBox.getText()));
+			controller.addPoint();
 		}
 	}
 	
@@ -83,7 +74,7 @@ public class LinearGeneratorController {
 		iterationTextBox.setText(String.valueOf((int)iterationSlider.getValue()));
 	}
 	
-	@FXML
+	@FXML 	
 	private void handleChangeIterationTextBox() {
 		iterationSlider.setValue(Double.parseDouble(iterationTextBox.getText()));
 	}
