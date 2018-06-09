@@ -1,6 +1,10 @@
 package application.linearRandomGenerator;
 
-public class LinearPseudorandomNumberGenerator {
+import java.util.List;
+import application.IAlgorithm;
+import application.Point;
+
+public class LinearPseudorandomNumberGenerator implements IAlgorithm {
 	private long a;
 	private long b;
 	private long m;
@@ -19,5 +23,19 @@ public class LinearPseudorandomNumberGenerator {
 	}
 	public double nextFrom0To1() {
 		return (double)nextInt()/m;
+	}
+	@Override
+	public List<Point> nextList() {
+		return null;
+	}
+
+	@Override
+	public double nextValue() {
+		return nextFrom0To1();
+	}
+
+	@Override
+	public int getAlgType() {
+		return 1;
 	}
 }

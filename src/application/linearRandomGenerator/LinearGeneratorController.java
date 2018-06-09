@@ -1,6 +1,7 @@
 package application.linearRandomGenerator;
 
 import application.ChartPaneController;
+import application.IAlgorithm;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -8,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Slider;
 
-public class LinearGeneratorController {
+public class LinearGeneratorController  {
 
 	// Controls
 	@FXML
@@ -21,7 +22,7 @@ public class LinearGeneratorController {
 	private TextField iterationTextBox;
 	@FXML
 	private Slider iterationSlider;
-	
+	ChartPaneController oldController;
 	
 	//reference to main class
 	private Main mainClass;
@@ -39,33 +40,36 @@ public class LinearGeneratorController {
 		
 	}
 	
-	
-	
 	public void setMainClass(Main main){
 		mainClass=main;
 	}
 	
-
 	@FXML
 	private void handleOKButtton() {
 		if(isValidInput()) {
-			/*LinearPseudorandomNumberGenerator gen=new LinearPseudorandomNumberGenerator(
-					Long.parseLong(firstTextBox.getText()),
+			IAlgorithm algorithm= new LinearPseudorandomNumberGenerator(Long.parseLong(firstTextBox.getText()),
 					Long.parseLong(secondTextBox.getText()),
 					Long.parseLong(thirdTextBox.getText()),
 					123);
 			
-			//create chart
-			ChartPaneController controller=new ChartPaneController(0,1,0,1,(float)0.01);
-			mainClass.addScatterChart(controller.getChart());
-			for(int i=0;i<iterationSlider.getValue();i++) {
-				controller.addPoint(gen.nextFrom0To1(),gen.nextFrom0To1());
+			//set up chart
+			ChartPaneController controller=new ChartPaneController(0,1,0,1,(float)0.02);
+			
+			//very important anuluje stare zadanie gdy okButton zostanie klikniety zanim skonczy siê stare zadanie;
+			if(oldController!=null) {
+				oldController.cancelTask();
 			}
-			*/
-			ChartPaneController controller=new ChartPaneController(0,100,0,100,2);
+			oldController=controller;
+			
+			//pass chart to mainClass scene
 			mainClass.addScatterChart(controller.getChart());
+			
+			//set algorithm and needed data
+			controller.SetAlgorithm(algorithm);
 			controller.setIterations(Integer.parseInt(iterationTextBox.getText()));
-			controller.addPoint();
+			
+			//start calculating data
+			controller.start();
 		}
 	}
 	
