@@ -37,7 +37,6 @@ public class LinearGeneratorController  {
 		iterationSlider.valueProperty().addListener(e -> {
 			handleSliderAction();
 		});
-		
 	}
 	
 	public void setMainClass(Main main){
